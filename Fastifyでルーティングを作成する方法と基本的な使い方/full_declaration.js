@@ -1,10 +1,11 @@
-// Require the framework and instantiate it
 const fastify = require("fastify")({
   logger: true,
   ignoreTrailingSlash: true,
 });
 
 const opts = {
+  method: "GET",
+  url: "/hello",
   schema: {
     querystring: {
       name: { type: "string" },
@@ -14,16 +15,16 @@ const opts = {
       200: {
         type: "object",
         properties: {
-          hello: { type: "string" },
+          message: { type: "string" },
         },
       },
     },
   },
-  handler: function(request, reply) {
-    reply.send({ hello: "world" });
+  handler: function (request, reply) {
+    reply.send({ message: "Hello, World!" });
   },
 };
-fastify.get("/helloworld", opts);
+fastify.route(opts);
 
 // Run the server!
 const start = async () => {
