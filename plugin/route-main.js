@@ -1,5 +1,5 @@
 const fastify = require("fastify")();
-const myPlugin = require("./function");
+const myPlugin = require("./route-plugin");
 
 const options = {};
 fastify.register(myPlugin, options);
